@@ -4,8 +4,13 @@
   "description": "project for blok tech",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "nodemon index.js"
   },
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "camelcase": "^5.3.1",
+    "nodemon": "^2.0.7"
+  }
 }
