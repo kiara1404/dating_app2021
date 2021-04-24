@@ -1,4 +1,14 @@
-const camelCase = require('camelcase');
+const express = require('express');
+const app = express();
+const port = 1234;
 
+app.get('/', helloWorld);
 
-console.log(camelCase('foo-bar'))
+function helloWorld(req, res) {
+    res.send('hola Mundo')
+}
+
+app.listen(port, function(){
+    console.log('The server is running')
+    }
+);
