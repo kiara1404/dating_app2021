@@ -36,6 +36,7 @@ nav ul li a {
     width: 50px;
     letter-spacing: 2px;
     margin-right: 50px;
+    text-decoration: none;
 }
 .tfp_signup {
     width: 100px;
@@ -50,17 +51,32 @@ nav ul li a {
     text-transform: uppercase;
     letter-spacing: 1px;
     font-weight: 400;
-
-
+    width: 100px;
 }
 
-.tfp_btn_primary:hover {
+.tfp_btn_primary:hover, .tfp_btn_big:hover {
     background: #fff;
     color: #7ba06a;
     transition: 0.5s ease-in;
 }
 
-
+.tfp_btn_secondary {
+    color: #5bb481;
+    padding: 10px 20px;
+    border-radius: 10px;
+    text-decoration: none;
+    letter-spacing: 1px;
+    font-weight: 400;
+    background-color: #efefef;
+    border: 1px solid #5bb481;
+    margin: 20px 10px;
+    
+}
+.tfp_btn_secondary:hover {
+    color:  #fff;
+    background-color: #5bb481;
+    transition: 0.5s ease-in;
+}
 .tfp_intro {
     background: url(../img/stock-photo.jpeg);
     background-size: cover;
@@ -136,6 +152,7 @@ nav ul li a {
     white-space: nowrap;
     display: block;
     text-overflow: ellipsis;
+    margin-bottom: 20px;
 }
 .tfp_container {
     display: flex;
@@ -152,4 +169,103 @@ footer {
     height: 8vh;
     width: 100vw;
     background-color: #000;
+}
+
+.tfp_burger div {
+        width: 25px;
+        height: 1px;
+        background-color: #fff;
+        margin: 6px;
+}
+.tfp_burger {
+    display: none;
+}
+.tfp_signup img {
+    display: none;
+}
+/* responsive */
+
+@media screen and (max-width: 768px) {
+    
+    .tfp_nav-links {
+        display: none;
+    }
+
+    .tfp_burger {
+        display: block;
+        cursor: pointer;
+        margin: 3px;;
+    }
+    .tfp_signup {
+        display: none;
+    }
+
+}
+
+@media screen and (max-width:768px) {
+
+
+
+    .tfp_nav-links {
+      display: none;
+        
+    }
+
+    .tfp_nav-links a {
+        padding: 1.5em 4em;
+
+    }
+
+    .tfp_nav-links a:hover {
+        background-color: hsla(266, 40%, 70%, 0.7);
+    }
+
+
+    .burger {
+        display: block;
+        margin-right: 0em;
+        cursor: pointer;
+    }
+}
+
+.tfp_login h2{
+    width: 350px;
+    margin: 0 auto;
+    margin-top: 50px
+}
+
+form {
+    display: block;
+    width: 80%;
+    margin: 0 auto;
+    padding-top: 10px;
+}
+form fieldset {
+    border: none;
+    width: 350px;
+    margin: 0 auto;
+}
+form label {
+    display: block;
+    padding: 20px 0 3px 0;
+    width: 200px;
+}
+form input {
+    width: 100%;
+    height: 30px;
+}
+
+form input[type='submit'] {
+    width: 220px;
+    border: none;
+    height: 35px;
+    display: block;
+    margin: 30px auto;
+}
+
+.tfp_footer {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
 }
