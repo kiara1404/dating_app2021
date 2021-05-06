@@ -1,29 +1,24 @@
-const express = require('express');
+const express = require('express'); // load express
 const app = express();
-const port = 1234;
+const port = 1996;
+const bodyParser = require('body-parser');
+//const multer = require('multer');
+const slug = require('slug');
 
-app.get('/', helloWorld);
-app.get('/about', about)
-app.get('/contact', contact)
-app.use(notFound)
 
-app.listen(port, function(){
-    console.log('The server is running at http://localhost:1234')
-    }
-);
+// set templating engine
+app.set('view engine', 'ejs');
+//where the templates are stored
+app.set('views', 'view');
+// public folder location
+app.use(express.static('public'));
+app.get('/', index)
+app.listen(port, server);
 
-function helloWorld(req, res) {
-    res.send('hola Mundo')
+function server() {
+    console.log('The server is running succesfully at http://localhost:1996 !')
 }
 
-function about(req,res) {
-res.send('this is about something')
-}
-
-function contact(req, res) {
-    res.send('normally you would get some contact info here...')
-}
-
-function notFound(req,res) {
-    res.status(404).send('something went wrong....')
+function index(req, res) {
+    res.render('index');
 }
