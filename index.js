@@ -13,6 +13,7 @@ app.set('views', 'view');
 // public folder location
 app.use(express.static('public'));
 app.get('/', index)
+app.get('/login', login)
 app.listen(port, server);
 
 function server() {
@@ -21,4 +22,8 @@ function server() {
 
 function index(req, res) {
     res.render('index');
+}
+
+function login(req,res) {
+    res.render('login')
 }

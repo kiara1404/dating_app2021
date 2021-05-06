@@ -227,6 +227,9 @@ footer {
         cursor: pointer;
     }
 }
+.tfp_login {
+    height: 80vh;
+}
 
 .tfp_login h2{
     width: 350px;

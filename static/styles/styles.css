@@ -228,10 +228,15 @@ footer {
     }
 }
 
+.tfp_login {
+    width: auto;
+    height: auto;
+}
+
 .tfp_login h2{
     width: 350px;
     margin: 0 auto;
-    margin-top: 50px
+    margin-top: 50px;
 }
 
 form {
