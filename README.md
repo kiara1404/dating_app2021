@@ -14,3 +14,4 @@ If you want to install this repository, follow these next steps.
 4. To run, enter the following code in your terminal: `     nodemon run dev`
 
 ### License
+MIT
