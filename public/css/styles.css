@@ -272,3 +272,16 @@ form input[type='submit'] {
     bottom: 0;
     width: 100%;
 }
+
+.tfp_register p{
+    margin-top: 30px;
+}
+
+.tfp_register input[type='radio'] {
+    display: inline-block;
+    width: 30px;
+}
+.tfp_radio-label {
+    display: inline-block;
+    width: 50px;
+}

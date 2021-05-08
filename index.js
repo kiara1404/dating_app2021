@@ -14,6 +14,7 @@ app.set('views', 'view');
 app.use(express.static('public'));
 app.get('/', index)
 app.get('/login', login)
+app.get('/register', register)
 app.listen(port, server);
 
 function server() {
@@ -26,4 +27,8 @@ function index(req, res) {
 
 function login(req,res) {
     res.render('login')
+}
+
+function register(req, res) {
+    res.render('register')
 }

@@ -1,0 +1,27 @@
+<main>
+    <section class="tfp_login">
+        <h2>Make a new account</h2>
+        <form method="POST" action="#">
+            <fieldset class="tfp_register">
+                <label for="name" >Name</label>
+                <input name="name" type="text" required>
+                <label for="email" >Email address</label>
+                <input name="email" type="email" required>
+                <label for="password" >Password</label>
+                <input name="password" type="password" required>
+                <p>Are you a model or photographer?</p>
+                <div>
+                    <input type="radio" value="model" name="profession" id="model">
+                    <label for="model" class="tfp_radio-label">Model</label>
+                </div>
+                <div>
+                    <input type="radio" value="photographer" name="profession" id="photographer">
+                    <label for="photographer" class="tfp_radio-label">Photographer</label>
+                </div>
+            </fieldset>
+        <input type="submit" value="Sign me up!" class="tfp_btn_primary">
+        </form>
+    </section>
+
+
+</main>
