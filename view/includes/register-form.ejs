@@ -1,7 +1,7 @@
 <main>
     <section class="tfp_login">
         <h2>Make a new account</h2>
-        <form method="post" action="/">
+        <form method="post" action="/" enctype="multipart/form-data" accept="image/*">
             <fieldset class="tfp_register">
                 <label for="name" >Name</label>
                 <input name="name" type="text" required>
@@ -18,6 +18,8 @@
                     <input type="radio" value="photographer" name="profession" id="photographer">
                     <label for="photographer" class="tfp_radio-label">Photographer</label>
                 </div>
+                <label for="avatar">Upload a profile picture</label>
+                <input name="avatar" type="file" accept="image/*">
                 <label for="bio">Tell a little something about your work</label>
                 <textarea name="bio"></textarea>
             </fieldset>

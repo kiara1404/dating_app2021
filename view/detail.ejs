@@ -2,16 +2,20 @@
 <%- include('includes/head.ejs'); %>
 
 <%- include('includes/header-login.ejs'); %>
-<main class="tfp_wrapper">
+<main>
+    <h2 class="tfp_h2-detail">Welcome to my profile</h2>
+    <div class="tfp_wrapper"> 
     <section class="tfp_profile">
-        <h2>Welcome to my profile</h2>
         <% if (data.avatar) { %>
-        <img src="/public/upload/<%= data.avatar %>">
+        <img src="/upload/<%= data.avatar %>">
         <% } %>
+    </section>
+    <section class="tfp_info">
         <p><%= data.name %></p>
         <p><%= data.email %></p>
         <p><%= data.profession %></p>
         <p><%= data.bio %></p>
     </section>
+</div>
 </main>
 <%- include('includes/footer.ejs'); %>

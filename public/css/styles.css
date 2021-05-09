@@ -296,15 +296,36 @@ form input[type='submit'] {
 .tfp_wrapper {
     width: 80vw;
     height: 80vh;
-}
-
-.tfp_profile {
-    width: 70%;
-    height: auto;
+    display: flex;
     margin: 0 auto;
 }
 
-.tfp_profile h2 {
-    margin: 50px 0 30px 0;
+.tfp_profile {
+    width: 350px;
+    height: 350px;
+    overflow-y: hidden;
+    border-radius: 50%;
+}
+
+main h2 {
+    margin: 50px 0 50px 150px;
     font-size: 2em;
+}
+
+.tfp_profile img {
+    width: 350px;
+
+
+}
+
+.tfp_info {
+    width: 40%;
+    margin-left: 50px;
+    margin-top: 70px;
+    
+}
+
+.tfp_info p {
+    margin-bottom: 20px;
+    font-size: 18px;
 }

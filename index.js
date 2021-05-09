@@ -2,7 +2,7 @@ const express = require('express'); // load express
 const app = express();
 const find = require('array-find')
 const port = 1996;
-//const multer = require('multer');
+const multer = require('multer');
 const slug = require('slug');
 
 let data = [
@@ -11,17 +11,20 @@ let data = [
         name: 'kiara',
         email: 'test@test.nl',
         profession: 'photographer',
-        bio: 'I am a starting professional photographer who likes to think outside of the box'
+        bio: 'I am a starting professional photographer who likes to think outside of the box',
+        avatar: 'IMG_9174.jpg'
     },
     {
         id: 'gaby',
         name: 'gaby',
         email: 'test@test.nl',
         profession: 'model',
-        bio: 'I love all types of modeling but my preference is for fashion'
+        bio: 'I love all types of modeling but my preference is for fashion',
+        avatar: 'IMG_9174.jpg'
     }
 ]
 
+let upload = multer({dest: 'public/upload/'})
 
 // set templating engine
 app.set('view engine', 'ejs');
@@ -35,14 +38,12 @@ app.get('/', index)
 app.get('/login', login)
 app.get('/register', register)
 app.get('/:id', person)
-app.post('/', add)
+app.get('/users', users)
+app.post('/', upload.single('avatar'), add)
 
 // port of server
 app.listen(port, server);
 
-function list(req, res) {
-    res.render('list')
-}
 
 function person(req, res) {
     let id = req.params.id;
@@ -50,8 +51,9 @@ function person(req, res) {
         return value.id === id
     })
     
-    res.render('detail.ejs', {data:person})
+    res.render('detail', {data:person})
 }
+
 function server() {
     console.log('The server is running succesfully at http://localhost:1996 !')
 }
@@ -76,8 +78,13 @@ function add(req, res) {
         name: req.body.name,
         email: req.body.email,
         profession: req.body.profession,
-        bio: req.body.bio
+        bio: req.body.bio,
+        avatar: req.file ? req.file.filename : null
     })
 
     res.redirect('/' + id)
+}
+
+function users(req, res) {
+    res.render('list', {data: data})
 }

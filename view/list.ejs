@@ -6,6 +6,8 @@
     <h2><a href="/<%= data[index].id %>"></a><%= data[index].name %></a></h2>
     <p><%= data[index].profession %></p> 
     <p><%= data[index].email %></p>
-    <% } %>
+    <img src="/upload/<%= data[index].avatar %>">
+
+
 
 <%- include('includes/footer.ejs'); %>
