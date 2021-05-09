@@ -1,0 +1,11 @@
+<%- include('includes/head.ejs'); %>
+
+<%- include('includes/header-login.ejs'); %>
+
+<% for (var index = 0; index < data.length; index++) { %>
+    <h2><a href="/<%= data[index].id %>"></a><%= data[index].name %></a></h2>
+    <p><%= data[index].profession %></p> 
+    <p><%= data[index].email %></p>
+    <% } %>
+
+<%- include('includes/footer.ejs'); %>

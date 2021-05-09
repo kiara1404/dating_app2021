@@ -1,0 +1,17 @@
+
+<%- include('includes/head.ejs'); %>
+
+<%- include('includes/header-login.ejs'); %>
+<main class="tfp_wrapper">
+    <section class="tfp_profile">
+        <h2>Welcome to my profile</h2>
+        <% if (data.avatar) { %>
+        <img src="/public/upload/<%= data.avatar %>">
+        <% } %>
+        <p><%= data.name %></p>
+        <p><%= data.email %></p>
+        <p><%= data.profession %></p>
+        <p><%= data.bio %></p>
+    </section>
+</main>
+<%- include('includes/footer.ejs'); %>
