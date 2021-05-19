@@ -1,13 +1,23 @@
-<%- include('includes/head.ejs'); %>
+<%- include('includes/head.ejs') %>
 
-<%- include('includes/header-login.ejs'); %>
+<%- include('includes/header-login.ejs') %>
 
-<% for (var index = 0; index < data.length; index++) { %>
-    <h2><a href="/<%= data[index].id %>"></a><%= data[index].name %></a></h2>
-    <p><%= data[index].profession %></p> 
-    <p><%= data[index].email %></p>
-    <img src="/upload/<%= data[index].avatar %>">
+<main>
+    <% for (var index = 0; index < data.length; index++) { %>
+        <a href="/<%= data[index].id %>"<h3>
+          <%= data[index].name%>
+        </a>
+        <p>
+            <%= data[index].email %>
+        </p>
+        <p>
+            <%= data[index].profession %>
+        </p>
+        <p>
+            <%= data[index].bio %>
+        </p>
+        <img src="/public/upload/<%= data[index].avatar %>">
 
-
-
-<%- include('includes/footer.ejs'); %>
+      <% } %>
+</main>
+<%- include('includes/footer.ejs') %>

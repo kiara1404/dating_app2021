@@ -35,6 +35,7 @@ app.use(express.static('public'));
 app.use(express.urlencoded());
 // routing
 app.get('/', index)
+app.get('/list', users)
 app.get('/login', login)
 app.get('/register', register)
 app.get('/:id', person)
@@ -86,5 +87,6 @@ function add(req, res) {
 }
 
 function users(req, res) {
+    console.log(data)
     res.render('list', {data: data})
 }
