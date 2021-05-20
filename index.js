@@ -1,7 +1,7 @@
 const express = require('express'); // load express
 const app = express();
 const find = require('array-find')
-const port = 1996;
+const port = process.env.PORT;
 const multer = require('multer');
 const slug = require('slug');
 
