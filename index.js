@@ -4,27 +4,27 @@ const find = require('array-find')
 const port = process.env.PORT;
 const multer = require('multer');
 const slug = require('slug');
+const mongo = require('mongodb');
 
-let data = [
-    {
-        id: 'kiara',
-        name: 'kiara',
-        email: 'test@test.nl',
-        profession: 'photographer',
-        bio: 'I am a starting professional photographer who likes to think outside of the box',
-        avatar: 'IMG_9174.jpg'
-    },
-    {
-        id: 'gaby',
-        name: 'gaby',
-        email: 'test@test.nl',
-        profession: 'model',
-        bio: 'I love all types of modeling but my preference is for fashion',
-        avatar: 'IMG_9174.jpg'
-    }
-]
+require('dotenv').config();
 
 let upload = multer({dest: 'public/upload/'})
+
+// database connect
+let db = null;
+let url = 'mongodb+srv://' + process.env.DB_HOST;
+
+mongo.MongoClient.connect(url, 
+    { useUnifiedTopology: true, },
+    function (err, client) {
+    if (err){
+         throw err
+    }
+    db = client.db(process.env.DB_NAME);
+    console.log('Succesfully connected to MongoDB')
+
+}
+);
 
 // set templating engine
 app.set('view engine', 'ejs');
@@ -45,18 +45,27 @@ app.post('/', upload.single('avatar'), add)
 // port of server
 app.listen(port, server);
 
-
-function person(req, res) {
+// detail page
+function person(req, res, next) {
     let id = req.params.id;
-    let person = find(data, function (value) {
-        return value.id === id
-    })
-    
-    res.render('detail', {data:person})
+
+    db.collection('users').findOne({
+        _id: new mongo.ObjectID(id),
+    }, done)
+
+    function done(err, data) {
+        if(err) {
+            next(err)
+        } else {
+            res.render('detail.ejs', {data:data});
+            console.log('person found succesfully')
+          }
+        }
+      
 }
 
 function server() {
-    console.log('The server is running succesfully at http://localhost:1996 !')
+    console.log('The server is running succesfully!')
 }
 
 function index(req, res) {
@@ -71,22 +80,37 @@ function register(req, res) {
     res.render('register')
 }
 
-function add(req, res) {
+// adding new person to database
+function add(req, res, next) {
     let id = slug(req.body.name).toLowerCase();
-
-    data.push({
-        id: id,
+    db.collection('users').insertOne({
         name: req.body.name,
         email: req.body.email,
+        password: req.body.password,
         profession: req.body.profession,
         bio: req.body.bio,
         avatar: req.file ? req.file.filename : null
-    })
+    }, done)
 
-    res.redirect('/' + id)
+    function done(err, data) {
+        if(err) {
+            next(err)
+        } else {
+            res.redirect('/' + data.insertedId) // route to new profile
+            console.log('data input succes', req.body.name)
+        }
+    }
+
 }
 
-function users(req, res) {
-    console.log(data)
-    res.render('list', {data: data})
-}
+function users(req, res){
+    db.collection('users').find().toArray(done)
+  
+    function done(err, data) {
+      if(err){
+        next(err)
+      } else{
+         res.render('list', {data: data});
+        }
+      }
+  }
