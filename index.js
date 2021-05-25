@@ -1,25 +1,29 @@
 const express = require('express'); // load express
 const app = express();
 const find = require('array-find')
-const port = process.env.PORT;
+const port =  process.env.PORT;
 const multer = require('multer');
 const slug = require('slug');
 const mongo = require('mongodb');
 
 require('dotenv').config();
 
+// where the uploaded files go
 let upload = multer({dest: 'public/upload/'})
 
 // database connect
 let db = null;
 let url = 'mongodb+srv://' + process.env.DB_HOST;
 
-mongo.MongoClient.connect(url, 
-    { useUnifiedTopology: true, },
+mongo.MongoClient.connect(
+    url, { 
+        useUnifiedTopology: true, 
+    },
     function (err, client) {
     if (err){
          throw err
     }
+
     db = client.db(process.env.DB_NAME);
     console.log('Succesfully connected to MongoDB')
 
@@ -32,37 +36,21 @@ app.set('view engine', 'ejs');
 app.set('views', 'view');
 // public folder location
 app.use(express.static('public'));
-app.use(express.urlencoded());
+app.use(express.urlencoded({ extended : true }));
 // routing
 app.get('/', index)
 app.get('/list', users)
 app.get('/login', login)
 app.get('/register', register)
+app.get('/update', update)
 app.get('/:id', person)
-app.get('/users', users)
 app.post('/', upload.single('avatar'), add)
+app.post('/update', addUpdate)
+app.use(notFound);
+
 
 // port of server
 app.listen(port, server);
-
-// detail page
-function person(req, res, next) {
-    let id = req.params.id;
-
-    db.collection('users').findOne({
-        _id: new mongo.ObjectID(id),
-    }, done)
-
-    function done(err, data) {
-        if(err) {
-            next(err)
-        } else {
-            res.render('detail.ejs', {data:data});
-            console.log('person found succesfully')
-          }
-        }
-      
-}
 
 function server() {
     console.log('The server is running succesfully!')
@@ -80,6 +68,25 @@ function register(req, res) {
     res.render('register')
 }
 
+//detail page
+function person(req, res, next) {
+    let id = req.params.id;
+    console.log(id)
+
+    db.collection('users').findOne({
+        _id: new mongo.ObjectID(id)
+    }, done)
+
+    function done(err, data) {
+        if(err) {
+            next(err)
+        } else {
+            res.render('detail.ejs', {data: data});
+            console.log('person found succesfully')
+          }
+        }
+      
+}
 // adding new person to database
 function add(req, res, next) {
     let id = slug(req.body.name).toLowerCase();
@@ -114,3 +121,31 @@ function users(req, res){
         }
       }
   }
+function update(req, res, data) {
+    res.render('update', {data: data })
+    
+}
+
+function addUpdate(req, res, next) {
+    
+    //console.log(req.body)
+    db.collection('users').updateOne({
+        _id: mongo.ObjectID('60ad29de1d02b68ab057d94b')},
+        { $set: {
+            name: req.body.name
+        }       
+    }, done)
+
+    function done(err, data) {
+        if(err) {
+            next(err)
+        } else {
+            res.redirect('/' + mongo.ObjectID('60ad29de1d02b68ab057d94b')) // route to profile
+            console.log('data update succes', req.body.name)
+        }
+    }
+}
+
+function notFound(req, res, next) {
+    res.status(404).render('404');
+}
