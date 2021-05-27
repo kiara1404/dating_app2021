@@ -74,7 +74,7 @@ function person(req, res, next) {
     console.log(id)
 
     db.collection('users').findOne({
-        _id: new mongo.ObjectID(id)
+        _id:  mongo.ObjectID(id)
     }, done)
 
     function done(err, data) {
@@ -130,7 +130,7 @@ function addUpdate(req, res, next) {
     
     //console.log(req.body)
     db.collection('users').updateOne({
-        _id: mongo.ObjectID('60ad29de1d02b68ab057d94b')},
+        _id: mongo.ObjectID('60abee196375cf653becd28f')},
         { $set: {
             name: req.body.name
         }       
@@ -140,7 +140,7 @@ function addUpdate(req, res, next) {
         if(err) {
             next(err)
         } else {
-            res.redirect('/' + mongo.ObjectID('60ad29de1d02b68ab057d94b')) // route to profile
+            res.redirect('/' + mongo.ObjectID('60abee196375cf653becd28f')) // route to profile
             console.log('data update succes', req.body.name)
         }
     }
