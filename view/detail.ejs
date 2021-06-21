@@ -1,23 +1,21 @@
-
-<%- include('includes/head.ejs'); %>
-
-<%- include('includes/header-login.ejs'); %>
+<%- include('includes/head.ejs'); %> <%- include('includes/header-login.ejs');
+%>
 <main>
-    <h2 class="tfp_h2-detail">Welcome to my profile</h2>
-    <div class="tfp_wrapper"> 
+  <h2 class="tfp_h2-detail">Welcome to my profile</h2>
+  <div class="tfp_wrapper">
     <section class="tfp_profile">
-        <% if (data.avatar) { %>
-        <img src="/upload/<%= data.avatar %>">
-        <% } %>
+      <% if (data.avatar) { %>
+      <img src="/upload/<%= data.avatar %>" />
+      <% } %>
     </section>
     <section class="tfp_info">
-        <p><%= data.name %></p>
-        <p><%= data.email %></p>
-        <p><%= data.profession %></p>
-        <p><%= data.bio %></p>
-        <a class="tfp_btn_secondary" href="/update">Update profile</a>
+      <p><%= data.name %></p>
+      <p><%= data.email %></p>
+      <p><%= data.profession %></p>
+      <p><%= data.bio %></p>
+      <a class="tfp_btn_secondary" href="/update">Update profile</a>
+      <a class="tfp_btn_secondary" href="/list">See all profiles</a>
     </section>
-    
-</div>
+  </div>
 </main>
 <%- include('includes/footer.ejs'); %>

@@ -1,16 +1,18 @@
 <main>
-    <section class="tfp_login">
-        <h2>Login</h2>
-        <form method="POST" action="#">
-            <fieldset class="tfp_form_personal">
-                <label for="email" >Email address</label>
-                <input name="email" type="email" required>
-                <label for="password" >Password</label>
-                <input name="password" type="password" required>
-            </fieldset>
-        <input type="submit" value="Login" class="tfp_btn_primary">
-        </form>
-    </section>
-
-
+  <section class="tfp_login">
+    <h2>Login</h2>
+    <form
+      method="POST"
+      action="/login"
+      enctype="application/x-www-form-urlencoded"
+    >
+      <fieldset class="tfp_form_personal">
+        <label for="loginEmail">Email address</label>
+        <input name="loginEmail" type="email" required />
+        <label for="loginPassword">Password</label>
+        <input name="loginPassword" type="password" required />
+      </fieldset>
+      <input type="submit" value="Login" class="tfp_btn_primary" />
+    </form>
+  </section>
 </main>

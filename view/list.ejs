@@ -3,21 +3,29 @@
 <%- include('includes/header-login.ejs') %>
 
 <main>
-    <% for (var index = 0; index < data.length; index++) { %>
-        <a href="/<%= data[index]._id %>"<h3>
-          <%= data[index].name%>
-        </a>
-        <p>
-            <%= data[index].email %>
-        </p>
-        <p>
-            <%= data[index].profession %>
-        </p>
-        <p>
-            <%= data[index].bio %>
-        </p>
-        <img class="tfp-avatar-s" src="/upload/<%= data[index].avatar %>">
+    <section class="tfp_wrapper">
+        <% for (var index = 0; index < data.length; index++) { %>
+            <article  class="tfp_listbox">
+                <a href="/<%= data[index]._id %>">
+                    <h3> 
+                        <%= data[index].name%>
+                    </h3>
+                </a>
+                
+                <p>
+                    <%= data[index].email %>
+                </p>
+                <p>
+                    <%= data[index].profession %>
+                </p>
+                <p>
+                    <%= data[index].bio %>
+                </p>
+                <img class="tfp-avatar-s" src="/upload/<%= data[index].avatar %>">
+            </a>
+        </article>
 
-      <% } %>
+        <% } %>
+    </section>
 </main>
 <%- include('includes/footer.ejs') %>
